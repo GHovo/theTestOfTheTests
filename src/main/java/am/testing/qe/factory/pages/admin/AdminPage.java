@@ -1,6 +1,7 @@
 package am.testing.qe.factory.pages.admin;
 
 import am.testing.qe.factory.pages.BasePage;
+import am.testing.qe.factory.pages.entrie.EntriesPage;
 import am.testing.qe.factory.pages.home.HomePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

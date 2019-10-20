@@ -22,17 +22,17 @@ public class Internal {
         adminPage.closeBrowser();
     }
 
-//    @Test
-//    public void first(){
-//
-//        adminPage
-//                .fillEmailField("selenium")
-//                .fillPasswordField("super_password")
-//                .clickOnLoginButton()
-//                .shouldBeSuccessful()
-//                .getControlPanel()
-//
-//    }
+    @Test
+    public void first(){
+
+        adminPage
+                .fillEmailField("selenium")
+                .fillPasswordField("super_password")
+                .clickOnLoginButton()
+                .shouldBeSuccessful()
+                .getControlPanel().shouldHaveText("ПАНЕЛЬ УПРАВЛЕНИЯ");
+
+    }
 
 }
 
