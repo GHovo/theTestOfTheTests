@@ -1,5 +1,6 @@
 import am.testing.qe.factory.pages.admin.AdminPage;
 import am.testing.qe.factory.pages.blog.BlogPage;
+import am.testing.qe.factory.pages.changeentry.ChangeEntries;
 import am.testing.qe.factory.pages.entrie.EntriesPage;
 import org.junit.After;
 import org.junit.Before;
@@ -35,8 +36,13 @@ public class EntriesPageTest {
                 .fillEntryTextMarkDown("Slug43565463456)")
                 .fillEntryText("Slug43565463456)")
                 .clickOnSaveButton();
-
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         BlogPage.open().lookAtEntryWithText("Title43565463456").assertThat().isDisplayed().softly();
+
         // todo go to entries page
         //  remove created entry
     }

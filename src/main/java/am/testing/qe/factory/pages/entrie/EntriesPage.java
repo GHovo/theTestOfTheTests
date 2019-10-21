@@ -1,6 +1,7 @@
 package am.testing.qe.factory.pages.entrie;
 
 import am.testing.qe.factory.pages.BasePage;
+import am.testing.qe.factory.pages.blog.BlogPage;
 import am.testing.qe.util.Assertable;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,10 +54,8 @@ public class EntriesPage extends BasePage<EntriesPage> {
         return this;
     }
 
-    public EntriesPage clickOnSaveButton(){
-//        JavascriptExecutor js = ((JavascriptExecutor) driver);
-//        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    public BlogPage clickOnSaveButton(){
         entrySaveButton.click();
-        return new EntriesPage().init();
+        return new BlogPage().init();
     }
 }
