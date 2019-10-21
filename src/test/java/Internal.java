@@ -27,7 +27,7 @@ public class Internal {
                 .fillPasswordField("super_password")
                 .clickOnLoginButton()
                 .shouldBeSuccessful()
-                .withControlPanel(controlPanel -> controlPanel.withText("ПАНЕЛЬ УПРАВЛЕНИЯ"));
+                .lookAtControlPanel().assertThat().isDisplayed().withText("Control panel").hard();
 
 
     }

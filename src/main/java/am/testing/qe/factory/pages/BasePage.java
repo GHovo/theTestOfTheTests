@@ -60,7 +60,8 @@ public abstract class BasePage<Main extends BasePage<Main>> implements IBasePage
 
     public String getPageURL(){return driver.getCurrentUrl();}
 
-    public Assertable assertableOf(WebElement element){
-        return new Assertable(element);
+    protected Assertable<Main> assertableOf(WebElement element){
+        return new Assertable<>(getPage(), element);
     }
+
 }

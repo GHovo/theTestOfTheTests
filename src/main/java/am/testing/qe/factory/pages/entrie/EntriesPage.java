@@ -2,11 +2,8 @@ package am.testing.qe.factory.pages.entrie;
 
 import am.testing.qe.factory.pages.BasePage;
 import am.testing.qe.util.Assertable;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.function.Consumer;
 
 public class EntriesPage extends BasePage<EntriesPage> {
 
@@ -32,9 +29,8 @@ public class EntriesPage extends BasePage<EntriesPage> {
         return super.open("admin/entry/");
     }
 
-    public EntriesPage withAddEntryElement(Consumer<Assertable> action) {
-        action.accept(assertableOf(addEntryText));
-        return this;
+    public Assertable<EntriesPage> lookAtAddEntryElement() {
+        return assertableOf(addEntryText);
     }
 
     public EntriesPage fillEntryTitle(String title) {
@@ -48,18 +44,18 @@ public class EntriesPage extends BasePage<EntriesPage> {
     }
 
     public EntriesPage fillEntryTextMarkDown(String text) {
-        entrySlug.sendKeys(text);
+        entryTextMarkDown.sendKeys(text);
         return this;
     }
 
     public EntriesPage fillEntryText(String text) {
-        entrySlug.sendKeys(text);
+        entryText.sendKeys(text);
         return this;
     }
 
     public EntriesPage clickOnSaveButton(){
-        JavascriptExecutor js = ((JavascriptExecutor) driver);
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+//        JavascriptExecutor js = ((JavascriptExecutor) driver);
+//        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         entrySaveButton.click();
         return new EntriesPage().init();
     }
