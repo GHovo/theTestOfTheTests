@@ -8,7 +8,6 @@ public class Initializer {
 
     private Initializer(){}
 
-
     public static Initializer get(){
         return initializer;
     }

@@ -1,7 +1,9 @@
 package am.testing.qe.factory.pages;
 
 import am.testing.qe.ui.drivers.DriverProvider;
+import am.testing.qe.util.Assertable;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 
@@ -18,7 +20,12 @@ public abstract class BasePage<Main extends BasePage<Main>> implements IBasePage
 
     protected Main open(String path){
         driver.get(BASE_URL + path);
-        PageFactory.initElements(driver, getPage());
+        return init();
+    }
+
+
+    public Main init() {
+        PageFactory.initElements(driver, this);
         return getPage();
     }
 
@@ -40,11 +47,6 @@ public abstract class BasePage<Main extends BasePage<Main>> implements IBasePage
         return ((Main) this);
     }
 
-    public Main init() {
-        PageFactory.initElements(driver, this);
-        return getPage();
-    }
-
     public Main doNothingDuringThe(int timeout){
         try {
             Thread.sleep(timeout * 1000);
@@ -55,6 +57,10 @@ public abstract class BasePage<Main extends BasePage<Main>> implements IBasePage
     }
 
     public String getPageTitle(){return driver.getTitle();}
+
     public String getPageURL(){return driver.getCurrentUrl();}
 
+    public Assertable assertableOf(WebElement element){
+        return new Assertable(element);
+    }
 }

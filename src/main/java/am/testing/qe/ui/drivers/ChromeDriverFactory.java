@@ -24,6 +24,7 @@ public class ChromeDriverFactory implements DriverFactory {
     private static boolean isDefault = true;
 
     private ChromeOptions chromeOptions = new ChromeOptions();
+
     private DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 
     @Override
@@ -39,7 +40,7 @@ public class ChromeDriverFactory implements DriverFactory {
         for (Options option : Options.values()) {
             chromeOptions.addArguments(option.getOption());
         }
-        String browserPath = getBrowserPath();
+        String browserPath = CHROME.getPath();
         File binaryChrome = new File(browserPath);
         chromeOptions.setBinary(binaryChrome);
         LoggingPreferences logPrefs = new LoggingPreferences();
@@ -79,27 +80,6 @@ public class ChromeDriverFactory implements DriverFactory {
     private ChromeDriverService initDriver() {
         WebDriverManager.chromedriver().setup();
         return new ChromeDriverService.Builder().usingAnyFreePort().build();
-    }
-
-    private String getBrowserPath()  {
-        return CHROME.getPath();
-    }
-
-    private enum BrowserPaths {
-
-        LINUX("/usr/bin/google-chrome"),
-        MAC("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
-        WINDOWS("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-
-        private final String chromePath;
-
-        BrowserPaths(String chromePath) {
-            this.chromePath = chromePath;
-        }
-
-        public String getChromePath() {
-            return chromePath;
-        }
     }
 
     public enum Options {

@@ -11,7 +11,6 @@ public enum Browser {
     private Map<OS, String> path = new HashMap<>();
 
     private void init(){
-        System.out.println(this.name());
         switch (this){
             case FIREFOX:
                 path.put(OS.WINDOWS, "");

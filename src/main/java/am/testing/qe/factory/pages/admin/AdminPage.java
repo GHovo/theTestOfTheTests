@@ -1,8 +1,8 @@
 package am.testing.qe.factory.pages.admin;
 
 import am.testing.qe.factory.pages.BasePage;
-import am.testing.qe.factory.pages.entrie.EntriesPage;
 import am.testing.qe.factory.pages.home.HomePage;
+import am.testing.qe.util.Assertable;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -36,8 +36,9 @@ public class AdminPage extends BasePage<AdminPage> {
         HomePage homePage;
         try {
             homePage = new HomePage().init();
+            homePage.withControlPanel(Assertable::isDisplayed); // TODO
             return new SignInResult.Success(homePage);
-        } catch (Exception e){
+        } catch (Throwable e){
             return new SignInResult.Failure(this);
         }
     }

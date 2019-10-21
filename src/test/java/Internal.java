@@ -1,24 +1,21 @@
 import am.testing.qe.factory.pages.admin.AdminPage;
-import org.assertj.core.util.Strings;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;  // main one
 
 public class Internal {
 
-    private AdminPage adminPage;
+    private static AdminPage adminPage;
 
     @Before
     public void beforeEach(){
         adminPage = new AdminPage().open();
     }
 
-    @After
-    public void afterEach(){
+    @AfterClass
+    public static void afterEach(){
         adminPage.closeBrowser();
     }
 
@@ -30,7 +27,8 @@ public class Internal {
                 .fillPasswordField("super_password")
                 .clickOnLoginButton()
                 .shouldBeSuccessful()
-                .getControlPanel().shouldHaveText("ПАНЕЛЬ УПРАВЛЕНИЯ");
+                .withControlPanel(controlPanel -> controlPanel.withText("ПАНЕЛЬ УПРАВЛЕНИЯ"));
+
 
     }
 

@@ -56,10 +56,8 @@ public class FirefoxDriverFactory implements DriverFactory {
         this.setFirefoxProfile();
         capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
         capabilities.setJavascriptEnabled(true);
-        capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
-                UnexpectedAlertBehaviour.IGNORE);
+        capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
         capabilities.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
-
         firefoxOptions.merge(capabilities);
     }
 
@@ -82,32 +80,9 @@ public class FirefoxDriverFactory implements DriverFactory {
 
 
     private String getBrowserPath() {
-        OS os = OS.current();
-        String path = null;
-        try {
-            path = Browser.CHROME.getPath();
-        } catch (IllegalArgumentException ex) {
-            driver = null;
-        }
-        return path;
+        return Browser.FIREFOX.getPath();
     }
 
-    private enum BrowserPaths {
-        LINUX("/usr/bin/firefox"),
-        MAC("/Applications/Firefox.app/Contents/MacOS/firefox");
-
-        private final String firefoxPath;
-
-        BrowserPaths(String firefoxPath) {
-            this.firefoxPath = firefoxPath;
-        }
-
-        public String getChromePath() {
-            return firefoxPath;
-        }
-
-
-    }
 
     public enum Options {
         SAVE_MODE("--safe-mode");

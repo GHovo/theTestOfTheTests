@@ -1,6 +1,5 @@
 package am.testing.qe.factory.pages.admin;
 
-import am.testing.qe.factory.pages.BasePage;
 import am.testing.qe.factory.pages.home.HomePage;
 
 public class SignInResult {
@@ -26,7 +25,7 @@ public class SignInResult {
         if(this instanceof Success){
             return ((Success) this).homePage;
         }
-        throw new RuntimeException("SING IN RESULT IS NOT SUCCESS");
+        throw new RuntimeException("SING IN IS NOT SUCCESSFUL");
     }
 
     @SuppressWarnings("unchecked")
@@ -34,6 +33,6 @@ public class SignInResult {
         if(this instanceof Failure){
             return ((Failure) this).adminPage;
         }
-        throw new RuntimeException("SING IN RESULT IS SUCCESS");
+        throw new RuntimeException("SING IN IS SUCCESSFUL :/");
     }
 }

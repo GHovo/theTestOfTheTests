@@ -1,10 +1,12 @@
 package am.testing.qe.factory.pages.entrie;
 
 import am.testing.qe.factory.pages.BasePage;
-import am.testing.qe.util.AssertableWebElement;
+import am.testing.qe.util.Assertable;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.function.Consumer;
 
 public class EntriesPage extends BasePage<EntriesPage> {
 
@@ -15,7 +17,7 @@ public class EntriesPage extends BasePage<EntriesPage> {
     private WebElement entryTitle;
 
     @FindBy(xpath ="//*[@id=\"id_slug\"]")
-    private WebElement entrySluge;
+    private WebElement entrySlug;
 
     @FindBy(xpath ="//*[@id=\"entry_form\"]/div/div/input[1]")
     private WebElement entrySaveButton;
@@ -30,8 +32,9 @@ public class EntriesPage extends BasePage<EntriesPage> {
         return super.open("admin/entry/");
     }
 
-    public AssertableWebElement<EntriesPage> getAddEntryText() {
-        return new AssertableWebElement<>(addEntryText, this);
+    public EntriesPage withAddEntryElement(Consumer<Assertable> action) {
+        action.accept(assertableOf(addEntryText));
+        return this;
     }
 
     public EntriesPage fillEntryTitle(String title) {
@@ -39,25 +42,25 @@ public class EntriesPage extends BasePage<EntriesPage> {
         return this;
     }
 
-    public EntriesPage fillEntrySluge(String sluge) {
-        entrySluge.sendKeys(sluge);
+    public EntriesPage fillEntrySlug(String slug) {
+        entrySlug.sendKeys(slug);
         return this;
     }
 
     public EntriesPage fillEntryTextMarkDown(String text) {
-        entrySluge.sendKeys(text);
+        entrySlug.sendKeys(text);
         return this;
     }
 
     public EntriesPage fillEntryText(String text) {
-        entrySluge.sendKeys(text);
+        entrySlug.sendKeys(text);
         return this;
     }
 
-    public EntriesPage clickOnSaveButoon(){
+    public EntriesPage clickOnSaveButton(){
         JavascriptExecutor js = ((JavascriptExecutor) driver);
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         entrySaveButton.click();
-        return new EntriesPage();
+        return new EntriesPage().init();
     }
 }
